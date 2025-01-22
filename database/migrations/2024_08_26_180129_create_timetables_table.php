@@ -17,7 +17,6 @@ return new class extends Migration
 			
             $table->string('paper_code');
 			$table->string('name');
-			$table->date('exam_date');
 			$table->time('start_time');
 			$table->time('end_time');
 			$table->string('remarks')->nullable();
