@@ -13,11 +13,6 @@ use App\Http\Controllers\SyllabusController;
 use App\Http\Controllers\StaticPageController;
 use App\Livewire\ContactForm;
 
-Route::get('/debug-sentry', function () {
-    throw new Exception('My first Sentry error!');
-});
-
-
 /* Home */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
