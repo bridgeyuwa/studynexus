@@ -23,6 +23,7 @@
         "livewire/livewire": "*",
         "lukeraymonddowning/self-healing-urls": "^0.5.1",
         "ralphjsmit/laravel-seo": "^1.6",
+        "sentry/sentry-laravel": "*",
         "spatie/geocoder": "^3.16",
         "spatie/laravel-analytics": "^5.3",
         "spatie/laravel-backup": "^9.0",
