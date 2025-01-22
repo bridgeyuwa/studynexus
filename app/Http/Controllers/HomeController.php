@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-		abort(500);
+		
 		
 		/*
 $filePath = public_path('files.json');
