@@ -49,7 +49,7 @@ use Carbon\Carbon;
 						</div>
 						
 						<h1  class="h3 text-white mt-3">
-					       {{$exam->name}} TIMETABLE
+					       {{$exam->abbr}} Exam Timetable
 						</h1>
 						
 						<div class="mt-3">
@@ -154,8 +154,9 @@ use Carbon\Carbon;
               <h2 class="content-heading {{$dateClass}}"> <i class="fas fa-calendar-day"></i> {{$examDate->format('l, jS F, Y')}} {{$day}}</h2>
               <div class="row items-push">
                 <div class="col-lg-4">
-				(<em>{{$exam->remarks}}</em>)
-                 
+				@if(!empty($exam->remarks))
+				   (<em>{{$exam->remarks}}</em>)
+                @endif
                 </div>
                 <div class="col-lg-8">
                   
