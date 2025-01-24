@@ -17,8 +17,8 @@ return new class extends Migration
 			
             $table->string('paper_code');
 			$table->string('name');
-			$table->time('start_time');
-			$table->time('end_time');
+			$table->dateTime('start_time', precision: 0);
+			$table->dateTime('end_time', precision: 0);
 			$table->string('remarks')->nullable();
 			
 			
