@@ -21,6 +21,7 @@ class TimetableController extends Controller
             return ExamBody::whereHas('exams.timetables')->with(['exams' => function($query){
 				//load only Exams with timetable
 				$query->whereHas('timetables')
+				->with('timetables')
 				->orderBy('year', 'desc')
                 ->orderBy('month', 'desc');
 			}])->get();
@@ -65,7 +66,7 @@ class TimetableController extends Controller
 		
 		$SEOData = new SEOData(
             title: "Timetable | {$exam->name}",
-            description: "View the full timetable for {$exam->name}, including exam dates and subjects.",
+            description: "Timetable for {$exam->name} for private candidates. Check full subject schedules and exam dates now!",
         );
 		
 		$shareLinks = \Share::currentPage()
