@@ -49,7 +49,7 @@ use Carbon\Carbon;
 						</div>
 						
 						<h1  class="h3 text-white mt-3">
-					       {{$exam->abbr}} Exam Timetable
+					       {{$exam->name}} Exam Timetable
 						</h1>
 						
 						<div class="mt-3">
