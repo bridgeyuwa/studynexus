@@ -512,17 +512,17 @@ class InstitutionController extends Controller {
 
     public function showProgram(Institution $institution, Level $level, Program $program) {
       
-		if(!$institution_program)
-		{
-			abort(404);
-		}
-			
 		$institution_program = Cache::remember("institution_{$institution->id}_program_{$program->id}_level_{$level->id}_show", 60 * 60, function () use ($institution, $level, $program) {
 			return $institution->programs()
 				->where('program_id', $program->id)
 				->wherePivot('level_id', $level->id)
 				->first();
 		});
+		
+		if(!$institution_program)
+		{
+			abort(404);
+		}
 
 		$program_levels = Cache::remember("institution_{$institution->id}_program_{$program->id}_levels", 60 * 60, function () use ($institution, $program) {
 			return $institution->levels()
