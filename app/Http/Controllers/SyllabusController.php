@@ -14,7 +14,7 @@ class SyllabusController extends Controller
     public function index()
     {
       
-		$examBodies = Cache::remember('exam_bodies_with_exams', 60 * 60, function () {
+		$examBodies = Cache::remember('syllabus_exam_bodies_with_exams', 60 * 60, function () {
 			//load on ExamBodies with Exam
             return ExamBody::whereHas('exams.syllabi')->with(['exams' => function($query){
 				//load only Exams with Syllabus
@@ -24,10 +24,7 @@ class SyllabusController extends Controller
 			}])->get();
 			
         });
-		
-		
-		
-		
+	
 		$SEOData = new SEOData(
             title: "Exam Syllabi",
             description: "Explore syllabi for various exams like WAEC, NECO, and more.",
