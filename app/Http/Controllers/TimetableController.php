@@ -16,7 +16,7 @@ class TimetableController extends Controller
     public function index()
     {
         // Cache the exam bodies with their exams for 60 minutes
-        $examBodies = Cache::remember('exam_bodies_with_exams', 60 * 60, function () {
+        $examBodies = Cache::remember('timetable_exam_bodies_with_exams', 60 * 60, function () {
 			//load on ExamBodies with Exam
             return ExamBody::whereHas('exams.timetables')->with(['exams' => function($query){
 				//load only Exams with timetable
