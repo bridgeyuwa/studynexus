@@ -24,8 +24,7 @@
 				</div>
 
 				<p class="lead">Explore the premium source for higher education information in Nigeria.</p>
-				<p>Delve into our extensive database containing over 1400 programmes across 800+ higher institutions including Universities, Polytechnics/Monotechnics, Colleges of Education and other Institutions with 30,000+ Institution-Programme database entries. Uncover Institution Rankings, Institution programmes, Education News, Examination Resources in Nigeria. Streamline your search of our vast and comprehensive database by utilizing our multi-teir filtering and sorting system based on Location, Study Level, Programme, Category, and more .</p>
-            
+                    <p>Delve into StudyNexus' extensive database featuring over 1,400 programmes across 800+ higher institutions, including Universities, Polytechnics/Monotechnics, Colleges of Education, and other institutions, with 30,000+ Institution-Programme database entries. On StudyNexus, uncover Institution Rankings, Programmes, Education News, and Examination Resources in Nigeria. Streamline your search on StudyNexus' vast and comprehensive platform using our multi-tier filtering and sorting system based on Location, Study Level, Programme, Category, and more.</p>
 
 				<div class="d-flex justify-content-center pb-4">
 					<a class="btn btn-hero btn-secondary rounded-0" href="{{url("#search")}}">Explore</a>     
