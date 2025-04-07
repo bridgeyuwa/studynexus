@@ -100,7 +100,8 @@
             
 
              @if(!request()->is('/') && !request()->is('search'))
-              <div class="dropdown push d-inline-block ms-1">
+           {{--    
+             <div class="dropdown push d-inline-block ms-1">
 
                     <button type="button" class="btn btn-alt-secondary dropdown-toggle" id="dropdown-content-hero-primary" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside" ><i class="fa fa-fw fa-search"></i> <span class="ms-1 d-none d-sm-inline-block">Search</span> </button>
 
@@ -112,6 +113,9 @@
                        </div>
                     </div>
                </div>
+              --}} 
+               <a href="{{ route('search') }}" class="btn btn-alt-secondary dropdown-toggle" ><i class="fa fa-fw fa-search"></i> <span class="ms-1 d-none d-sm-inline-block">Search</span> </a>
+
             @endif
 
             <!-- END Open Search Section -->
