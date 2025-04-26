@@ -2,47 +2,84 @@
 <html lang="{{ config('app.locale') }}">
 
 <head>
-    @if (app()->environment('production'))
-        
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6759102211328437"
-     crossorigin="anonymous"></script>
-    
-      <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRK9XM0YXN"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+  @if (app()->environment('production'))
 
-          gtag('config', 'G-JRK9XM0YXN');
-        </script>    
-        
-        <!-- Clarity tracking code for https://studynexus.ng/ -->
-        <script>    (function(c,l,a,r,i,t,y){        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);    })(window, document, "clarity", "script", "pvcbkg87kv");</script>
-        
-        <!-- Ahref Analytics -->
-        <script src="https://analytics.ahrefs.com/analytics.js" data-key="VSqRMv98Gvv0mS6r7l2RDw" async></script>
-   
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6759102211328437"
+    crossorigin="anonymous"></script>
 
-   @endif
-    
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRK9XM0YXN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-JRK9XM0YXN');
+  </script>
+
+
+<!-- Google Ad blocking recovery -->
+  <script async src="https://fundingchoicesmessages.google.com/i/pub-6759102211328437?ers=1"></script>
+  <script>
+    (function() {
+      function signalGooglefcPresent() {
+        if (!window.frames['googlefcPresent']) {
+          if (document.body) {
+            const iframe = document.createElement('iframe');
+            iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;';
+            iframe.style.display = 'none';
+            iframe.name = 'googlefcPresent';
+            document.body.appendChild(iframe);
+          } else {
+            setTimeout(signalGooglefcPresent, 0);
+          }
+        }
+      }
+      signalGooglefcPresent();
+    })();
+  </script>
+
+  <!-- Clarity tracking code for https://studynexus.ng/ -->
+  <script>
+    (function(c, l, a, r, i, t, y) {
+      c[a] = c[a] || function() {
+        (c[a].q = c[a].q || []).push(arguments)
+      };
+      t = l.createElement(r);
+      t.async = 1;
+      t.src = "https://www.clarity.ms/tag/" + i + "?ref=bwt";
+      y = l.getElementsByTagName(r)[0];
+      y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "pvcbkg87kv");
+  </script>
+
+  <!-- Ahref Analytics -->
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="VSqRMv98Gvv0mS6r7l2RDw" async></script>
+
+
+  @endif
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-     <!-- laravel-seo here -->
-     @isset($SEOData) {!! seo($SEOData) !!} @endisset
-	@isset($canonical) <link rel="canonical" href="{{$canonical}}" > @endisset
-	 <!-- Schema -->
-    
+  <!-- laravel-seo here -->
+  @isset($SEOData) {!! seo($SEOData) !!} @endisset
+  @isset($canonical)
+  <link rel="canonical" href="{{$canonical}}"> @endisset
+  <!-- Schema -->
+
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  
+
   <!-- Icons -->
   <link rel="icon" type="image/svg+xml" href="/media/favicons/favicon-192x192.svg">
   <link rel="shortcut icon" type="image/svg+xml" href="/media/favicons/favicon.svg">
   <link rel="apple-touch-icon" type="image/svg+xml" href="/media/favicons/favicon-180x180.svg">
-  
-  
+
+
   <!-- Fonts and Styles -->
   @yield('css_before')
   <link rel="stylesheet" id="css-main" href="{{ asset('css/dashmix.css') }}">
@@ -51,18 +88,20 @@
   @yield('css_after')
 
   @if (config('app.env') === 'local')
-	<link rel="stylesheet"  href="{{ asset('js/plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('js/plugins/select2/css/select2.min.css') }}">
 
   @else
-	  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
   @endif
 
-	<link rel="stylesheet"  href="{{ asset('js/plugins/select2/css/select2-bootstrap-5-theme.min.css') }}">
-    <link rel="stylesheet"  href="{{ asset('css/custom.css') }}">
+  <link rel="stylesheet" href="{{ asset('js/plugins/select2/css/select2-bootstrap-5-theme.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
   <!-- Scripts -->
   <script>
-    window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
+    window.Laravel = {
+      !!json_encode(['csrfToken' => csrf_token()]) !!
+    };
   </script>
 </head>
 
@@ -70,37 +109,37 @@
   <!-- Page Container -->
 
   <div id="page-container" class="sidebar-o sidebar-dark  page-header-fixed main-content-narrow page-header-dark page-header-glass">
-    
+
 
     <!-- Sidebar -->
     @include('partials.side-bar')
     <!-- END Sidebar -->
 
     <!-- Header -->
-      <header id="page-header">
-        <!-- Header Content -->
-        <div class="content-header">
-          <!-- Left Section -->
-          <div>
-            <!-- Toggle Sidebar -->
-            
+    <header id="page-header">
+      <!-- Header Content -->
+      <div class="content-header">
+        <!-- Left Section -->
+        <div>
+          <!-- Toggle Sidebar -->
 
-             <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
-            <button type="button" class="btn btn-alt-secondary" data-toggle="layout" data-action="sidebar_toggle">
-              <div class="studynexus-menu">
-                  <div class="studynexus-bar"></div>
-                  <div class="studynexus-bar"></div>
-                  <div class="studynexus-text">MENU</div>
-              </div>
-            </button>
-            <!-- END Toggle Sidebar -->
 
-            <!-- Open Search Section -->
-            
-            
+          <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
+          <button type="button" class="btn btn-alt-secondary" data-toggle="layout" data-action="sidebar_toggle">
+            <div class="studynexus-menu">
+              <div class="studynexus-bar"></div>
+              <div class="studynexus-bar"></div>
+              <div class="studynexus-text">MENU</div>
+            </div>
+          </button>
+          <!-- END Toggle Sidebar -->
 
-             @if(!request()->is('/') && !request()->is('search'))
-           {{--    
+          <!-- Open Search Section -->
+
+
+
+          @if(!request()->is('/') && !request()->is('search'))
+          {{--
              <div class="dropdown push d-inline-block ms-1">
 
                     <button type="button" class="btn btn-alt-secondary dropdown-toggle" id="dropdown-content-hero-primary" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside" ><i class="fa fa-fw fa-search"></i> <span class="ms-1 d-none d-sm-inline-block">Search</span> </button>
@@ -113,60 +152,61 @@
                        </div>
                     </div>
                </div>
-              --}} 
-               <a href="{{ route('search') }}" class="btn btn-alt-secondary dropdown-toggle" ><i class="fa fa-fw fa-search"></i> <span class="ms-1 d-none d-sm-inline-block">Search</span> </a>
+              --}}
 
-            @endif
+          <a href="{{ route('search') }}" class="btn btn-alt-secondary dropdown-toggle"><i class="fa fa-fw fa-search"></i> <span class="ms-1 d-none d-sm-inline-block">Search</span> </a>
 
-            <!-- END Open Search Section -->
-          </div>
-          <!-- END Left Section -->
+          @endif
 
-          <!-- Right Section -->
-          <div>
-            <!-- Notifications Dropdown -->
-            <div class="dropdown d-inline-block">
-              <button type="button" class="btn btn-alt-secondary" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-fw fa-rss"></i>
-                <span class="badge bg-info rounded-pill">News</span> <i class="fa fw-sm fa-caret-down"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
-                <div class="bg-primary-dark rounded-top fw-semibold fs-sm text-white text-center p-3">
-                  Latest News
-                </div>
-                <ul class="nav-items my-2">
-				
-				@foreach($news as $story)
-                  <li>
-                    <a class="d-flex text-dark py-2" href="{{route('news.show',['news' => $story])}}">
-                      <div class="flex-shrink-0 mx-3">
-                        <i class="fa fa-fw fa-rss text-success"></i>
-                      </div>
-                      <div class="flex-grow-1 fs-sm pe-2">
-                        <div class="fw-semibold">{{$story->title}}</div>
-                        <div class="text-muted">{{$story->created_at->diffForHumans()}}</div>
-                      </div>
-                    </a>
-                  </li>
-				  @endforeach
-				  
-                  
-                </ul>
-                <div class="p-2 border-top text-center">
-                  <a class="btn btn-alt-primary w-100" href="{{route('news.index')}}">
-                    <i class="fa fa-fw fa-eye opacity-50 me-1"></i> View All
+          <!-- END Open Search Section -->
+        </div>
+        <!-- END Left Section -->
+
+        <!-- Right Section -->
+        <div>
+          <!-- Notifications Dropdown -->
+          <div class="dropdown d-inline-block">
+            <button type="button" class="btn btn-alt-secondary" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-fw fa-rss"></i>
+              <span class="badge bg-info rounded-pill">News</span> <i class="fa fw-sm fa-caret-down"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
+              <div class="bg-primary-dark rounded-top fw-semibold fs-sm text-white text-center p-3">
+                Latest News
+              </div>
+              <ul class="nav-items my-2">
+
+                @foreach($news as $story)
+                <li>
+                  <a class="d-flex text-dark py-2" href="{{route('news.show',['news' => $story])}}">
+                    <div class="flex-shrink-0 mx-3">
+                      <i class="fa fa-fw fa-rss text-success"></i>
+                    </div>
+                    <div class="flex-grow-1 fs-sm pe-2">
+                      <div class="fw-semibold">{{$story->title}}</div>
+                      <div class="text-muted">{{$story->created_at->diffForHumans()}}</div>
+                    </div>
                   </a>
-                </div>
+                </li>
+                @endforeach
+
+
+              </ul>
+              <div class="p-2 border-top text-center">
+                <a class="btn btn-alt-primary w-100" href="{{route('news.index')}}">
+                  <i class="fa fa-fw fa-eye opacity-50 me-1"></i> View All
+                </a>
               </div>
             </div>
-            <!-- END Notifications Dropdown -->
-
-            
           </div>
-          <!-- END Right Section -->
+          <!-- END Notifications Dropdown -->
+
+
         </div>
-        <!-- END Header Content -->
-       
+        <!-- END Right Section -->
+      </div>
+      <!-- END Header Content -->
+
 
       <!-- Header Loader -->
       <!-- Please check out the Loaders page under Components category to see examples of showing/hiding it -->
@@ -186,7 +226,7 @@
     <!-- Main Container -->
     <main id="main-container">
 
-      @yield('content') 
+      @yield('content')
 
     </main>
     <!-- END Main Container -->
@@ -198,7 +238,7 @@
           <div class="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-end">
             Powered and Managed by <a class="fw-semibold" href="https://bridgeyuwa.github.io" rel="nofollow" target="_blank">Bridges Yuwa</a>
           </div>
-          <div class="col-sm-6 order-sm-1 text-center text-sm-start">       
+          <div class="col-sm-6 order-sm-1 text-center text-sm-start">
             <a class="fw-semibold" href="{{route('about')}}" target="_blank">Study Nexus</a> &copy;
             <span data-toggle="year-copy"></span>
           </div>
@@ -210,27 +250,27 @@
   <!-- END Page Container -->
 
   <!-- Dashmix Core JS -->
-  
+
   <script src="{{ asset('js/dashmix.app.js') }}"></script>
-  
-  
+
+
   @if (config('app.env') === 'local')
-    <script src="{{ asset('js/lib/jquery.min.js') }}"></script> 
-    <script src="{{ asset('js/plugins/select2/js/select2.min.js') }}"></script> 
-    <script src="{{ asset('js/plugins/masonry.pkgd.min.js') }}"></script>
+  <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
+  <script src="{{ asset('js/plugins/select2/js/select2.min.js') }}"></script>
+  <script src="{{ asset('js/plugins/masonry.pkgd.min.js') }}"></script>
 
   @else
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
 
   @endif
-  
-  
+
+
   <script src="{{ asset('js/plugins/select2/js/select2-searchInputPlaceholder.js') }}"></script>
   <script src="{{ asset('js/share.js') }}"></script>
-  
-  
+
+
   @yield('js_after')
 </body>
 
