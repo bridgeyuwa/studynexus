@@ -13,6 +13,7 @@ services:
       - studynexus-vendor-data:/var/www/html/vendor # Persist vendor to avoid re-installs
       - studynexus-storage-data:/var/www/html/storage
       - studynexus-cache-data:/var/www/html/bootstrap/cache
+      - ./storage/app/public:/var/www/html/public/storage
     working_dir: /var/www/html
     user: "www-data"
     depends_on:
@@ -75,7 +76,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
     ports:
-      - "3307:3306" # Use 3307 on host to avoid conflicts with local MySQL
+      - "3306:3306" # Use 3307 on host to avoid conflicts with local MySQL
     networks:
       - studynexus-network
     healthcheck:
