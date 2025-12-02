@@ -1,0 +1,115 @@
+services:
+  studynexus:
+    container_name: studynexus-php
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - UID=${UID:-1000} # Matches host UID for volume perms
+        - GID=${GID:-1000}
+    image: studynexus-php-fpm:latest # Tag for clarity
+    volumes:
+      - .:/var/www/html:ro # Read-only mount for code (prevents host overwrites in container)
+      - studynexus-vendor-data:/var/www/html/vendor # Persist vendor to avoid re-installs
+      - studynexus-storage-data:/var/www/html/storage
+      - studynexus-cache-data:/var/www/html/bootstrap/cache
+    working_dir: /var/www/html
+    user: "www-data"
+    depends_on:
+      mysql:
+        condition: service_healthy # Wait for DB readiness
+      redis:
+        condition: service_healthy
+    networks:
+      - studynexus-network
+    environment:
+      # No COMPOSER_ALLOW_SUPERUSER needed (running as www-data)
+      # Inject Laravel env vars here or via .env file (not mounted for security)
+      APP_ENV: local # Override as needed
+      APP_DEBUG: "true"
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: ${MYSQL_DATABASE:-studynexus}
+      DB_USERNAME: ${MYSQL_USER:-studynexus}
+      DB_PASSWORD: ${MYSQL_PASSWORD:-6789998212aA@}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    healthcheck:
+      test: [ "CMD", "php-fpm", "-t" ] # Matches Dockerfile
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped # Auto-restart on failures
+
+  nginx:
+    container_name: studynexus-nginx
+    image: nginx:latest # Explicit version for stability
+    ports:
+      - "8080:80" # Use 8080 on host to avoid port 80 conflicts (e.g., with host services)
+    volumes:
+      - .:/var/www/html:ro # Read-only for safety
+      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      studynexus:
+        condition: service_healthy
+    networks:
+      - studynexus-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  mysql:
+    container_name: studynexus-mysql
+    image: mysql:8.4 # Updated to latest stable
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-6789998212} # Use env vars/secrets
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-studynexus}
+      MYSQL_USER: ${MYSQL_USER:-studynexus}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-6789998212aA@}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3307:3306" # Use 3307 on host to avoid conflicts with local MySQL
+    networks:
+      - studynexus-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${MYSQL_USER}", "--password=${MYSQL_PASSWORD}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  redis:
+    container_name: studynexus-redis
+    image: redis:7.4-alpine # Lightweight, latest stable
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379" # Expose if needed for host access (e.g., debugging)
+    networks:
+      - studynexus-network
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+networks:
+  studynexus-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  redis-data:
+  studynexus-vendor-data:
+  studynexus-storage-data:
+  studynexus-cache-data:
