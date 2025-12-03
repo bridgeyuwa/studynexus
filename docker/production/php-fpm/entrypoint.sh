@@ -19,7 +19,23 @@ rm -rf /var/www/storage-init
 # -----------------------------------------------------------
 # Ensure the database schema is up to date.
 # -----------------------------------------------------------
-php artisan migrate --force
+#php artisan migrate --force
+
+#Temporary fix
+# Only run migrations if the database is empty
+DB_CHECK=$(php -r "
+\$pdo = new PDO('mysql:host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'));
+\$tables = \$pdo->query('SHOW TABLES')->fetchAll();
+echo count(\$tables);
+")
+
+if [ "$DB_CHECK" -eq 0 ]; then
+    echo "Running Laravel migrations..."
+    php artisan migrate --force
+else
+    echo "Database already has tables, skipping migrations."
+fi
+##
 
 # Clear and cache configurations
 # -----------------------------------------------------------
