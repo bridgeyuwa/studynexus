@@ -29,8 +29,8 @@ class AppServiceProvider extends ServiceProvider
 
        Paginator::defaultView('vendor.pagination.study-nexus');
         
-	   Model::preventLazyLoading( !$this->app->isProduction());
-	   Model::preventAccessingMissingAttributes();
+	   // Model::preventLazyLoading( !$this->app->isProduction());
+	   // Model::preventAccessingMissingAttributes();
 	   
 	   View::composer('partials.side-bar', function ($view) {
 			// Cache the category classes for 15 minutes
