@@ -1,0 +1,10 @@
+﻿status,meaning,use
+CURRENT,Current material governed by a present authority.,May be used as current only where authority identifies the governing source.
+CURRENT_SUPPORTING,Supports current understanding but is not the highest product authority.,Use with accepted Product Discovery; do not let it override Tier 1.
+HISTORICAL,Previously current/proposed/used material retained for evidence and evolution.,Do not treat as current without a stronger current decision.
+SUPERSEDED,Material replaced by a stronger/later decision or representation.,Historical evidence only.
+REJECTED,Proposal explicitly rejected by stronger evidence.,Preserve rationale/evolution; never treat as adopted.
+OPEN_QUESTION,Genuinely unresolved matter.,Do not infer a resolution.
+EXPLORATORY,Idea/research/proposal never established as adopted.,Input to future analysis only.
+ARCHIVE_ONLY,Preserved for provenance/package history but not intended for routine active use.,Consult when tracing archive lineage or package structure.
+DUPLICATE,Exact byte-for-byte duplicate of another source.,Do not count as independent evidence.
