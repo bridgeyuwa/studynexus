@@ -1,0 +1,3 @@
+﻿assumption_id,statement,status,authority,notes
+ASM-001,"Institution Offering and Discovery Programme are distinct, with optional StudyNexus-curated discovery classification.",ADOPTED_EXPLICIT_ASSUMPTION,Accepted Product Discovery Part XIV / R001-R002,Do not make classification an existence/ingestion gate.
+ASM-002,"Persistent identity, personalization and notifications remain MVP considerations while the anonymous core discovery/search/comparison experience remains usable without an account.",ADOPTED_EXPLICIT_ASSUMPTION,Accepted Product Discovery Part XIV,Capability minimums may still require refinement.
